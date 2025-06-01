@@ -24,7 +24,7 @@ client.once(Events.ClientReady, readyClient => {
 client.login(token);
 
 client.on('messageCreate', msg => {
-  // TODO move to separate commands file
+  // TODO below move to separate commands file
   switch (msg.content.toLowerCase()) {
     case "ping":
       msg.reply('Pong!');
@@ -33,20 +33,32 @@ client.on('messageCreate', msg => {
       msg.channel.send('wagwan');
       break;
     case "posturecheck":
-      msg.channel.send({ files: [{ attachment: `.\\media\\posturecheck.jpg` }] });
+      sendPostureImage(msg);
       break;
-    
+
     // TODO documentation for bot commands
-		//const helpEmbed = new Discord.MessageEmbed()
+    //const helpEmbed = new Discord.MessageEmbed()
     // .setTitle("Commands Documentation")
-		// .setDescription(
+    // .setDescription(
     // `TODO /help - provides full list of bot commands\n
     //  /test - bot responds with "Hello" when online\n
     //  /ping - bot responds with "Pong! when online\n"
     // `);
-		// 	msg.reply({ embeds: [helpEmbed] });
+    // 	msg.reply({ embeds: [helpEmbed] });
   }
 });
+
+function sendPostureImage(msg) {
+  imagePath = `.\\media\\posturecheck.jpg`;
+
+  if (Math.round(Math.random()) % 2 === 0) {
+    imagePath = `.\\media\\posturecheck.jpg`;
+  } else {
+    imagePath = `.\\media\\posture-check-golf.jpg`;
+  }
+  
+  msg.channel.send({ files: [{ attachment: imagePath }] });
+}
 
 
 var lastCheck = null;

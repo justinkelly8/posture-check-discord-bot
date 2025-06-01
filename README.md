@@ -1,4 +1,4 @@
-# Discord bot to remind users to fix their posture while online
+## Discord bot to remind users to fix their posture while online
 
 # Bot Commands
 ### Send commands in any text channel when the bot is in the server and online:
@@ -8,7 +8,7 @@ ping - bot replies "Pong!" when online
 test - bot sends "wagwan"
 ```
 
-# Getting started
+## Getting started
 Clone the project, install dependencies via npm, install NodeJS.
 
 Run the project with ```node .``` when in the project directory
