@@ -56,9 +56,8 @@ async function checkPostures() {
       (c) => c.type === "voice"
     );
 
-    console.log(voiceChannels);
-
     for await (var vc of voiceChannels) {
+      console.log(vc);
       vc = vc[1];
       console.log(vc.name, vc.speakable, vc.members.size);
       if (vc.members.size > 0) {
