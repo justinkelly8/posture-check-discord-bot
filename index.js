@@ -24,10 +24,27 @@ client.once(Events.ClientReady, readyClient => {
 client.login(token);
 
 client.on('messageCreate', msg => {
+  // TODO move to separate commands file
   switch (msg.content.toLowerCase()) {
     case "ping":
       msg.reply('Pong!');
       break;
+    case "test":
+      msg.channel.send('wagwan');
+      break;
+    case "posturecheck":
+      msg.channel.send({ files: [{ attachment: `.\\media\\posturecheck.jpg` }] });
+      break;
+    
+    // TODO documentation for bot commands
+		//const helpEmbed = new Discord.MessageEmbed()
+    // .setTitle("Commands Documentation")
+		// .setDescription(
+    // `TODO /help - provides full list of bot commands\n
+    //  /test - bot responds with "Hello" when online\n
+    //  /ping - bot responds with "Pong! when online\n"
+    // `);
+		// 	msg.reply({ embeds: [helpEmbed] });
   }
 });
 
@@ -38,6 +55,8 @@ async function checkPostures() {
     const voiceChannels = guild.channels.cache.filter(
       (c) => c.type === "voice"
     );
+
+    console.log(voiceChannels);
 
     for await (var vc of voiceChannels) {
       vc = vc[1];
@@ -73,7 +92,7 @@ async function checkPosture(voiceChannel) {
       })
       .catch((err) => {
         console.log(
-          "Der opstod en fejl, ved tilslutningen af en voice channel."
+          "An error occured while trying to connect to the voice channel."
         );
         console.log(err);
         resolve(voiceChannel);
